@@ -65,15 +65,16 @@ echo "Download Source"
 
 
 if test -f "$FILENAME"; then
-    rm -r $PACKAGENAME-$PACKAGEVER
-    tar -xzvf  $FILENAME
+    if test -d $PACKAGENAME-$PACKAGEVER; then
+        rm -r $PACKAGENAME-$PACKAGEVER
+    fi
+        tar -xzf  $FILENAME   
 else
     wget $URL
-    tar -xzvf  $FILENAME
+    tar -xzf  $FILENAME
 fi
 
 cd $PACKAGENAME-$PACKAGEVER
-
 
 #Configure
 echo "Configuring:"
