@@ -1,0 +1,19 @@
+name: Example user installation of Make
+
+on: 
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: [self-hosted, linux, x64, sharc]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get initial info
+      run: ./initial-info.sh
+
+    - name: Install Make
+      run: install_scripts/install_make.sh 
