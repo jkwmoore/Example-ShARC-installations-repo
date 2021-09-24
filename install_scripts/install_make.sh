@@ -21,6 +21,16 @@ URL="https://ftp.gnu.org/gnu/$PACKAGENAME/$FILENAME"
 
 ###################################################################################
 
+# Signal handling for failure
+handle_error () {
+    errcode=$? # save the exit code as the first thing done in the trap function 
+    echo "Error: $errorcode" 
+    echo "Command: $BASH_COMMAND" 
+    echo "Line: ${BASH_LINENO[0]}"
+    exit $errcode  # or use some other value or do return instead 
+}
+trap handle_error ERR
+
 #Start the main work of the script
 echo "Running install script to make Package: "  $PACKAGENAME " Version: "  $PACKAGEVER 
 
